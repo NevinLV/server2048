@@ -22,7 +22,7 @@ class Players(APIView):
             if "password" in player_data:
                 res = Player(username=player_data["username"], password=player_data["password"])
                 res.save()
-                return Response({"msg": "Игрок зарегистрирован"}, HTTP_201_CREATED)
+                return Response({"id": res.id, "username": res.username, "password": res.password,}, HTTP_201_CREATED)
             else:
                 return Response({"msg": "Не указано поле password"}, HTTP_400_BAD_REQUEST)
         else:
